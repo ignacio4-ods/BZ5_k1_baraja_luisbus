@@ -1,0 +1,118 @@
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Random;
+
+public class Baraja {
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+
+		Cartas misCartas = new Cartas();
+		misCartas.crearBaraja();
+		misCartas.barajar();
+		misCartas.repartir();
+		misCartas.imprimirCartasJugadores();
+		misCartas.cartasRestantes();
+
+	}
+
+}
+
+class Cartas {
+
+	String[] palos = { "Corazones", "Diamantes", "Picas", "Treboles" };
+
+	String[] valores = { "As", "2", "3", "4", "5", "6", "7", "8", "9", "Jota", "Q", "Rey" };
+
+	// String[] baraja= new String[(palos.length)*(valores.length)];
+
+	ArrayList<String> baraja = new ArrayList<String>();
+
+	ArrayList<String> jugador1 = new ArrayList<String>();
+
+	ArrayList<String> jugador2 = new ArrayList<String>();
+
+	ArrayList<String> jugador3 = new ArrayList<String>();
+
+	int c = 0;
+
+	public void crearBaraja() {
+
+		for (int i = 0; i < palos.length; i++) {
+			for (int j = 0; j < valores.length; j++) {
+
+				baraja.add(valores[j] + " de " + palos[i]);
+
+				c++;
+
+			}
+
+		}
+
+	}
+
+	public void barajar() {
+
+		Collections.shuffle(baraja);
+
+		for (int i = 0; i < baraja.size(); i++) {
+
+			System.out.println(baraja.get(i));
+		}
+
+	}
+
+	public void repartir() {
+
+		for (int i = 0; i < 15; i+=3) {
+
+			jugador1.add(baraja.get(i));
+
+			jugador2.add(baraja.get(i + 1));
+
+			jugador3.add(baraja.get(i + 2));
+
+		}
+	}
+
+	public void imprimirCartasJugadores() {
+
+		System.out.print("Jugador 1: ");
+
+		for (int i = 0; i < jugador1.size(); i++) {
+
+			System.out.print(jugador1.get(i)+" ");
+
+		}
+		System.out.println(" ");
+
+		System.out.print("Jugador 2: ");
+
+		for (int i = 0; i < jugador2.size(); i++) {
+
+			System.out.print(jugador2.get(i)+" ");
+		}
+
+		System.out.println(" ");
+
+		System.out.print("Jugador 3: ");
+
+		for (int i = 0; i < jugador3.size(); i++) {
+
+			System.out.print(jugador3.get(i)+" ");
+
+		}
+	}
+	public void cartasRestantes() {
+		
+		System.out.println(" ");
+		System.out.print("CARTAS RESTANTES: ");
+		
+		for(int i=(3*jugador1.size());i<baraja.size();i++) {
+			
+			System.out.print(baraja.get(i)+" ");
+			
+		}
+	}
+
+}
